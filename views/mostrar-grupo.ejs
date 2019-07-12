@@ -1,0 +1,38 @@
+<div class="contenedor">
+    <h1><%= nombrePagina %></h1>
+    <div class="informacion-grupo">
+        <div class="imagen">
+            <% if(grupo.imagen) { %>
+                <img src="/uploads/grupos/<%= grupo.imagen %>">
+            <% } else { %>
+                <img src="/img/meeti.jpg">
+            <% } %> 
+        </div>
+        <div class="texto">
+            <%- grupo.descripcion %>
+
+            <% if(grupo.url) { %> 
+                <a target="_blank" class="url" href="<%- grupo.url %>">Visita nuestro sitio web</a>
+            <% } %>
+
+            <% if(meetis.length > 0 ) { %>
+                <h2>Próximos Meeti's</h2>
+                <ul class="lista-meetis">
+                    <% meetis.forEach(meeti => { %>
+                        <li>
+                            <div class="texto">
+                                <a href="/meeti/<%= meeti.slug %>">
+                                    <h3><%= meeti.titulo %></h3>
+                                    
+                                    <% moment.locale('es'); %>
+                                    <% const fecha = meeti.fecha + ' ' + meeti.hora; %>
+                                    <p class="fecha"><%= moment(fecha).format('LLLL') %> Horas</p>
+                                </a>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Meeti - <%- nombrePagina %>  </title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900|Staatliches" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
+    integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
+    crossorigin="">
+    <link rel="stylesheet" href="/css/trix.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <header class="site-header contenedor">
+        <a href="/">
+            <img src="/img/logo.png" alt="Logo Meeti">
+        </a>
+
+        <nav class="nav">
+            <% if(locals.usuario.id) { %>
+                <%- include partials/nav-autenticado.ejs %>
+            <% } else { %>
+                <%- include partials/nav-no-autenticado.ejs %>
+            <% } %>
+        </nav>
+    </header>
+
+    <% if (locals.mensajes) { %>
+       <% const categoria = Object.keys(locals.mensajes) %>
+       <% if(categoria.length) { %>
+            <% locals.mensajes[categoria].forEach(alerta => {  %>
+                <div class="alertas">
+                   <p class="alerta <%= categoria %>"> <%= alerta %></p>
+                </div>
+            <% }) %>
+       <% } %>
+    <% } %>
+
+    <%- body %>
+
+    <footer class="site-footer contenedor">
+        <nav class="nav">
+            <a href="#">Crear Grupo</a>
+            <a href="/iniciar-sesion">Iniciar Sesión</a>
+            <a href="/crear-cuenta">Registrarse</a>
+        </nav>
+
+        <p class="copyright">Todos los derechos reservados Meeti <%- year %></p>
+    </footer>
+    
+    <script src="/js/trix.js"></script>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/esri-leaflet@2.2.4/dist/esri-leaflet.js"
+    integrity="sha512-tyPum7h2h36X52O2gz+Pe8z/3l+Y9S1yEUscbVs5r5aEY5dFmP1WWRY/WLLElnFHa+k1JBQZSCDGwEAnm2IxAQ=="
+    crossorigin=""></script>
+    <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
+    integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
+    crossorigin=""></script>
+
+    <% if(usuario.id) { %>
+        <script src="/dist/bundle.js"></script>
+    <% } %>
+    <script src="/js/meeti.js"></script>
+</body>
+</html>
