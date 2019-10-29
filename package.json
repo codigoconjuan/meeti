@@ -37,7 +37,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.9.0",
-    "sequelize": "^5.1.0",
+    "sequelize": "^5.15.1",
     "shortid": "^2.2.14",
     "slug": "^1.0.0",
     "sweetalert2": "^8.7.0",
