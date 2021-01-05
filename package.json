@@ -19,7 +19,7 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcrypt-nodejs": "0.0.3",
     "concurrently": "^4.1.0",
     "connect-flash": "^0.1.1",
